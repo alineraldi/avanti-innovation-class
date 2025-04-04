@@ -1,0 +1,58 @@
+* {
+    font-family: Nunito, Nunito sans, sans-serif;
+}
+
+h4 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 0.8rem;
+}
+
+h6 {
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+
+#categoriesMenu {
+    margin-left: 3rem;
+    position: fixed;
+    background-color: #f8f9fa; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    display: none;
+}
+
+#supersaleImg {
+    background: #e7e7ea;
+    width: 100%;
+}
+
+#lancamentos-carrossel {
+    align-items: center;
+}
+
+#lancamentos-titulos {
+    display: flex;
+    justify-content: space-between;
+    width: 83%;
+}
+
+#valor-desconto {
+    background-color: #5ec0be;
+    color: white;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    margin-left: 0.5rem;
+}
+
+.post{
+    width: 60%;
+}
+
+.post-2 {
+    background-color: #e7e7ea;
+    width: 100%;
+}
