@@ -56,3 +56,10 @@ h6 {
     background-color: #e7e7ea;
     width: 100%;
 }
+
+.carousel-scroll {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  
