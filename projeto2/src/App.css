@@ -1,0 +1,25 @@
+*, html, body {
+    box-sizing: border-box;
+    margin: 0; /* Remove as margens padrão */
+    padding: 0; /* Remove o preenchimento padrão */
+}
+
+/* Estilo para o corpo da página */
+body { 
+    position: relative; /* Define o corpo como um contêiner posicionado para elementos posicionados relativamente */
+    background: #000000;
+    display: grid; /* Usa grid layout para centralizar conteúdo */
+    height: 100vh; /* Altura total da janela de visualização */
+    place-items: center; /* Centraliza elementos horizontal e verticalmente */
+    z-index: -999; /* Define uma ordem de sobreposição extremamente baixa para o corpo */
+}
+
+/* Caixa de entrada de texto fixada */
+#input-box {
+    position: fixed;
+    top: 70%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; 
+    display: block; 
+}
