@@ -27,7 +27,7 @@ function App() {
       setUserData(response.data);
     } catch (err) {
       console.error("Error fetching user:", err);  // Log any error
-      setError("User not found");
+      setError("Nenhum perfil foi encontrado com esse nome de usuário. Tente novamente.");
     }
   };
 
