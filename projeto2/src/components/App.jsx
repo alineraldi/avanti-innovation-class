@@ -5,29 +5,32 @@ import searchIcon from '../img/search.png';
 import logo from "../img/logo.png";
 
 function App() {
-  // Declaring states
   const [username, setUsername] = useState("");
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // This function is called when the "Search" button is pressed. It is asynchronous because it makes an HTTP request to fetch data, it handles this asynchronously to avoid freezing the user interface.
+
   const fetchUser = async () => {
-    // Removing previous data, if there's any:
     setError("");
     setUserData(null);
+    setLoading(true);
     if (!username) {
       setError("Por favor, insira um perfil para ser pesquisado.");
       return;
     }
 
     try {
-      console.log(`Fetching user data for ${username}...`);  // Log to check what username is being searched
+      console.log(`Fetching user data for ${username}...`);  
       const response = await axios.get(`https://api.github.com/users/${username}`);
-      console.log("User data:", response.data);  // Log the response from the API
+      console.log("User data:", response.data);  
       setUserData(response.data);
+      setLoading(false);
     } catch (err) {
-      console.error("Error fetching user:", err);  // Log any error
+      console.error("Error fetching user:", err); 
       setError("Nenhum perfil foi encontrado com esse nome de usuário. Tente novamente.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -43,7 +46,12 @@ function App() {
       <p className="text-gray-800 text-xs uppercase opacity-50 hover:text-white"><a href="https://github.com/alineraldi" target="_blank" rel="noopener noreferrer">alineraldi @ github</a></p>
       <img src={logo} alt="logo" className="w-100 mx-auto my-4" />
         <div className="flex mb-4">
-          <input
+          {loading ? (
+              <div className="flex-1 border bg-primary text-white rounded-l-lg p-2 focus:outline-none border-white h-12 w-full">
+              <h1>🔄 Carregando...</h1>
+            </div>
+          ): (
+            <input
             type="text"
             className="flex-1 border bg-white text-blue rounded-l-lg p-2 focus:outline-none border-white h-12 w-full"
             placeholder="Digite um usuário do Github"
@@ -51,6 +59,7 @@ function App() {
             onChange={(e) => setUsername(e.target.value)}
             onKeyDown={handleSearch}
           />
+          )}        
           <button
             onClick={handleSearch}
             className="bg-darkblue text-white px-4 py-2 rounded-r-lg focus:bg-blue"
@@ -76,10 +85,12 @@ function App() {
               href={userData.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              // The 'rel="noopener noreferrer"' attribute is used for security and privacy reasons when using target="_blank".
-              // - 'noopener' ensures that the new page cannot access the original page via window.opener, which prevents malicious pages from manipulating the original page.
-              // - 'noreferrer' prevents the browser from sending the referring page's URL to the new page, which enhances privacy by not revealing where the user came from.
-              // This is a best practice when opening links in a new tab (target="_blank") to protect against potential vulnerabilities.
+// APRENDI ENQUANTO DESENVOLVIA
+// O atributo 'rel="noopener noreferrer"' é usado por motivos de segurança e privacidade ao utilizar target="_blank".
+// - 'noopener' garante que a nova página não possa acessar a página original via window.opener, o que evita que páginas maliciosas manipulem a página de origem.
+// - 'noreferrer' impede que o navegador envie a URL da página de origem para a nova página, o que aumenta a privacidade ao não revelar de onde o usuário veio.
+// Essa é uma prática recomendada ao abrir links em uma nova aba (target="_blank") para proteger contra possíveis vulnerabilidades.
+
 
               className="text-white hover:text-darkblue"
             >
